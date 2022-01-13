@@ -7,7 +7,7 @@ from sklearn.decomposition import PCA
  
 # Read face image from zip file on the fly
 faces = {}
-with zipfile.ZipFile("attface.zip") as facezip:
+with zipfile.ZipFile("./src/1d_PCA/attface.zip") as facezip:
     for filename in facezip.namelist():
         if not filename.endswith(".pgm"):
             continue # not a face picture
