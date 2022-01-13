@@ -6,9 +6,9 @@ from sklearn.decomposition import PCA
  
 # Read face image from zip file on the fly
 faces = {}
-with zipfile.ZipFile("./Dataset.zip") as facezip:
+with zipfile.ZipFile("./src/1d_PCA/attface.zip") as facezip:
     for filename in facezip.namelist():
-        if not filename.endswith(".jpg"):
+        if not filename.endswith(".pgm"):
             continue # not a face picture
         with facezip.open(filename) as image:
             # If we extracted files from zip, we can use cv2.imread(filename) instead
@@ -35,9 +35,9 @@ print("Number of images:", len(faces))
 facematrix = []
 facelabel = []
 for key,val in faces.items():
-    if key.startswith("Grp13Person40/"):
+    if key.startswith("s40/"):
         continue # this is our test set
-    if key == "Grp13Person39/390_39.jpg":
+    if key == "s39/10.pgm":
         continue # this is our test set
     facematrix.append(val.flatten())
     facelabel.append(key.split("/")[0])
@@ -63,7 +63,7 @@ weights = eigenfaces @ (facematrix - pca.mean_).T
 print("Shape of the weight matrix:", weights.shape)
  
 # Test on out-of-sample image of existing class
-query = faces["Grp13Person39/390_39.jpg"].reshape(1,-1)
+query = faces["s39/10.pgm"].reshape(1,-1)
 query_weight = eigenfaces @ (query - pca.mean_).T
 euclidean_distance = np.linalg.norm(weights - query_weight, axis=0)
 best_match = np.argmin(euclidean_distance)
@@ -77,7 +77,7 @@ axes[1].set_title("Best match")
 plt.show()
  
 # Test on out-of-sample image of new class
-query = faces["Grp13Person40/391_40.jpg"].reshape(1,-1)
+query = faces["s40/1.pgm"].reshape(1,-1)
 query_weight = eigenfaces @ (query - pca.mean_).T
 euclidean_distance = np.linalg.norm(weights - query_weight, axis=0)
 best_match = np.argmin(euclidean_distance)
