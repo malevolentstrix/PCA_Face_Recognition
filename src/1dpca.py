@@ -30,7 +30,7 @@ facematrix = np.array(facematrix)
 
 pca = PCA().fit(facematrix)
 
-n_components = 40
+n_components = 60
 eigenfaces = pca.components_[:n_components]
 
 
