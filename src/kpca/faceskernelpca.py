@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul  2 16:32:14 2017
-
-@author: pfierens
-"""
 from os import listdir
 from os.path import join, isdir
 from scipy import ndimage as im
