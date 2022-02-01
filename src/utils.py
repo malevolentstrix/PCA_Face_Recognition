@@ -44,7 +44,7 @@ def split_train_test(zipfilepath):
             person_num, img_num = get_person_num(filename=filename)
 
             # every 0th and 1st pic per person is sent to training set
-            if img_num == 0 or img_num == 1 or img_num==2:
+            if img_num == 0 or img_num == 1:
                 with facezip.open(filename) as image:
 
                     testing_set[filename] = cv2.imdecode(np.frombuffer(
