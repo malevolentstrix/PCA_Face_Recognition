@@ -36,10 +36,11 @@ eigenfaces = pca.components_[:n_components]
 
 fig, axes = plt.subplots(4, 4, sharex=True, sharey=True, figsize=(8, 10))
 for i in range(16):
+    if(i<len(eigenfaces)):
+        break
     axes[i % 4][i//4].imshow(eigenfaces[i].reshape(faceshape), cmap="gray")
 print("Showing the eigenfaces")
 plt.show()
-
 # eqn 4
 weights = eigenfaces @ (facematrix - pca.mean_).T
 print("Shape of the weight matrix:", weights.shape)
