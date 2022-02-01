@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-
-from utils import get_faces, get_person_num, show_sample_faces, split_train_test
+import timeit
+from utils import get_faces, get_person_num, show_sample_faces, split_train_test,get_stats
 
 
 faces = get_faces(zipfile_path="./Grp13Dataset.zip")
@@ -20,6 +20,7 @@ facelabel = []
 
 training_set, testing_set = split_train_test(zipfilepath="./Grp13Dataset.zip")
 
+start = timeit.default_timer()
 for key, val in training_set.items():
     # fig 1
     facematrix.append(val.flatten())
@@ -59,17 +60,16 @@ def get_best_match(filename):
     axes[0].set_title("Query - Person " + str(person_num))
     axes[1].imshow(facematrix[best_match].reshape(faceshape), cmap="gray")
     axes[1].set_title("Best match - Person " + str((best_match//8) + 1))
-    # plt.show()
+    #plt.show()
     # uncomment the above line to see individual results of testing faces
-
     return (((best_match//8) + 1), person_num)
 
+stop = timeit.default_timer()
 
 correct_pred = 0
 wrong_pred = 0
 total_pred = 0
-for key, val in testing_set.items():
-
+for key, val in testing_set.items():       
     predicted, actual = get_best_match(filename=key)
     total_pred += 1
     if predicted == actual:
@@ -77,7 +77,9 @@ for key, val in testing_set.items():
     else:
         wrong_pred += 1
 
-print(f" Correct preds: {correct_pred}/{total_pred}")
-print(f" Wrong preds: {wrong_pred}/{total_pred}")
+Correct_Predic, Wrong_Predic, Accuracy = get_stats(correct_pred,wrong_pred,total_pred)
+print(f"Correct prediction: ",Correct_Predic)
+print(f"Wrong prediction: ",Wrong_Predic)
 
-print(f"Accuracy {correct_pred*100/total_pred}%")
+print(f"Accuracy: ",Accuracy,"%")
+print(f"Time Taken: ",round(stop-start,3),"s")

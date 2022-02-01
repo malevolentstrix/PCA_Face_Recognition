@@ -44,7 +44,7 @@ def split_train_test(zipfilepath):
             person_num, img_num = get_person_num(filename=filename)
 
             # every 0th and 1st pic per person is sent to training set
-            if img_num == 0 or img_num == 1:
+            if img_num == 0 or img_num == 1 or img_num==2:
                 with facezip.open(filename) as image:
 
                     testing_set[filename] = cv2.imdecode(np.frombuffer(
@@ -56,3 +56,10 @@ def split_train_test(zipfilepath):
                         image.read(), np.uint8), cv2.IMREAD_GRAYSCALE)
 
     return training_set, testing_set
+
+def get_stats(correct_pred,wrong_pred,total_pred):
+
+    Correct_Predic = round(correct_pred/total_pred,3)
+    Wrong_Predic =  round(wrong_pred/total_pred,3)
+    Accuracy = round((correct_pred*100)/total_pred,3)
+    return Correct_Predic, Wrong_Predic, Accuracy
