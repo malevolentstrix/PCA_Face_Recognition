@@ -5,6 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import svm
 import eig
+from utils import get_faces, get_person_num, show_sample_faces, split_train_test, get_stats
+
+faces = get_faces(zipfile_path="../../Grp13Dataset.zip")
+
+#print(faces['Grp13Person41/410_41.jpg'])
 
 mypath      = 'att_faces/'
 onlydirs    = [f for f in listdir(mypath) if isdir(join(mypath, f))]
