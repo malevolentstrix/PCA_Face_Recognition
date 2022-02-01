@@ -98,9 +98,9 @@ for img in testing_set:
         wrong_pred += 1
 total_pred = correct_pred+wrong_pred
 
-Correct_Predic, Wrong_Predic, Accuracy = get_stats(correct_pred,wrong_pred,total_pred)
-print(f"Correct prediction: ",Correct_Predic)
-print(f"Wrong prediction: ",Wrong_Predic)
+Accuracy = get_stats(correct_pred,wrong_pred,total_pred)
+print(f"Correct prediction: ",correct_pred,"/",total_pred)
+print(f"Wrong prediction: ",wrong_pred,"/",total_pred)
 
 print(f"Accuracy: ",Accuracy,"%")
 print(f"Time Taken: ",round(stop-start,3),"s")
