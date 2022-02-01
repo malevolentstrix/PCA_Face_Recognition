@@ -30,7 +30,8 @@ facematrix = np.array(facematrix)
 
 pca = PCA().fit(facematrix)
 
-n_components = 60
+print("\n Enter the components: ",end="")
+n_components =int(input())
 eigenfaces = pca.components_[:n_components]
 
 

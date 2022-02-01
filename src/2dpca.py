@@ -1,5 +1,6 @@
-from utils import get_faces, get_person_num, show_sample_faces, split_train_test
+from utils import get_faces, get_person_num, show_sample_faces, split_train_test, get_stats
 import numpy as np
+import timeit
 
 faces = get_faces(zipfile_path="./Grp13Dataset.zip")
 # show_sample_faces(faces=faces)
@@ -14,6 +15,7 @@ print("Number of images:", len(faces))
 
 training_set, testing_set = split_train_test(zipfilepath="./Grp13Dataset.zip")
 
+start = timeit.default_timer()
 
 def get_matrix(training_list, img_height, img_width):
 
@@ -63,7 +65,8 @@ g_t /= no_of_images
 # finding eigen values and eigen vectors
 eig_val, eig_vec = np.linalg.eig(g_t)
 
-n = 20
+print("\n Enter the components: ",end="")
+n =int(input())
 eigfaces = eig_vec[:, 0:n]
 
 # finding new coordinates using dot product new bases
@@ -82,7 +85,7 @@ def get_best_match(img):
     min = np.argmin(distances)
     return(min//8 + 1)
 
-
+stop = timeit.default_timer()
 correct_pred = 0
 wrong_pred = 0
 for img in testing_set:
@@ -95,7 +98,9 @@ for img in testing_set:
         wrong_pred += 1
 total_pred = correct_pred+wrong_pred
 
-print(f" Correct preds: {correct_pred}/{total_pred}")
-print(f" Wrong preds: {wrong_pred}/{total_pred}")
+Correct_Predic, Wrong_Predic, Accuracy = get_stats(correct_pred,wrong_pred,total_pred)
+print(f"Correct prediction: ",Correct_Predic)
+print(f"Wrong prediction: ",Wrong_Predic)
 
-print(f"Accuracy {correct_pred*100/total_pred}%")
+print(f"Accuracy: ",Accuracy,"%")
+print(f"Time Taken: ",round(stop-start,3),"s")
