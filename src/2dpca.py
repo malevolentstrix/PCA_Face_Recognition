@@ -65,7 +65,7 @@ g_t /= no_of_images
 # finding eigen values and eigen vectors
 eig_val, eig_vec = np.linalg.eig(g_t)
 
-print("\n Enter the components: ",end="")
+print("\nEnter the components: ",end="")
 n =int(input())
 eigfaces = eig_vec[:, 0:n]
 

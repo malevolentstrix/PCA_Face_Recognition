@@ -19,6 +19,8 @@ facematrix = []
 facelabel = []
 
 training_set, testing_set = split_train_test(zipfilepath="./Grp13Dataset.zip")
+print("\n Enter the components: ",end="")
+n_components =int(input())
 
 start = timeit.default_timer()
 for key, val in training_set.items():
@@ -30,15 +32,11 @@ facematrix = np.array(facematrix)
 
 pca = PCA().fit(facematrix)
 
-print("\n Enter the components: ",end="")
-n_components =int(input())
 eigenfaces = pca.components_[:n_components]
-
 
 fig, axes = plt.subplots(4, 4, sharex=True, sharey=True, figsize=(8, 10))
 for i in range(16):
-    if(i<len(eigenfaces)):
-        break
+
     axes[i % 4][i//4].imshow(eigenfaces[i].reshape(faceshape), cmap="gray")
 print("Showing the eigenfaces")
 plt.show()
