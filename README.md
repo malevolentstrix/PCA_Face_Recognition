@@ -38,3 +38,12 @@ So the dataset is projected into a higher dimensional feature space. They become
 
 In the case of KPCA, first the Kernel matrix is formed, then the kernel function is chosen after which the eiegnvalues, eigenvectors and eigenface is found, and the rest of steps followed is same as above.
 
+## GROUP MEMBERS
+| NAME  | ROLL NUMBER |
+| ------------- | ------------- |
+| GAYATHRI P  | AM.EN.U4AIE20126  |
+| JITHIN JOHN  | AM.EN.U4AIE20135 |
+| LAKSHMI WARRIER  | AM.EN.U4AIE20143   |
+| M DEVIKA  | AM.EN.U4AIE20144  |
+| NIVEDITA RAJESH  | AM.EN.U4AIE20153 |
+
