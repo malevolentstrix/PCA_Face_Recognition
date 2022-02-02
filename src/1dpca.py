@@ -6,7 +6,7 @@ from utils import get_faces, get_person_num, show_sample_faces, split_train_test
 
 
 faces = get_faces(zipfile_path="./Grp13Dataset.zip")
-show_sample_faces(faces=faces)
+#show_sample_faces(faces=faces)
 
 faceshape = list(faces.values())[0].shape
 print("Face image shape:", faceshape)
@@ -33,6 +33,7 @@ facematrix = np.array(facematrix)
 pca = PCA().fit(facematrix)
 
 eigenfaces = pca.components_[:n_components]
+print(eigenfaces.shape)
 
 fig, axes = plt.subplots(4, 4, sharex=True, sharey=True, figsize=(8, 10))
 for i in range(16):
@@ -49,6 +50,8 @@ def get_best_match(filename):
     query = faces[filename].reshape(1, -1)
     # eqn 22
     query_weight = eigenfaces @ (query - pca.mean_).T
+
+    print("qw", query_weight.shape, "w", weights.shape)
     euclidean_distance = np.linalg.norm(weights - query_weight, axis=0)
     best_match = np.argmin(euclidean_distance)
     #print("Best match %s with Euclidean distance %f" %  (facelabel[best_match], euclidean_distance[best_match]))
@@ -60,7 +63,7 @@ def get_best_match(filename):
     axes[0].set_title("Query - Person " + str(person_num))
     axes[1].imshow(facematrix[best_match].reshape(faceshape), cmap="gray")
     axes[1].set_title("Best match - Person " + str((best_match//8) + 1))
-    #plt.show()
+    plt.show()
     # uncomment the above line to see individual results of testing faces
     return (((best_match//8) + 1), person_num)
 
