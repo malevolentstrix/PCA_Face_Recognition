@@ -40,20 +40,20 @@ In the case of KPCA, first the Kernel matrix is formed, then the kernel function
 
 ## OUTPUT
 
-### Eigen Faces:
+### Eigenfaces:
 
 First 16 eigenfaces when 40 principal components were chosen is plotted:
 <table>
      <tr>
-          <td><img height="350" src="https://github.com/iamjithinjohn/PCA_Face_Recognition/blob/1DPCA/OUTPUT_SS/EigenFace.png" /><br /><center><b>Eigen Faces</b></center></td>
+          <td><img height="350" src="OUTPUT_SS/EigenFace.png" /><br /><center><b>Eigen Faces</b></center></td>
      </tr>
 </table>
 
 ### Recognised and Unrecognised Faces
 <table>
      <tr>
-          <td><img height="250" src="https://github.com/iamjithinjohn/PCA_Face_Recognition/blob/1DPCA/OUTPUT_SS/Correct.png" /><br /><center><b>Recognised Face</b></center></td>
-          <td><img height="250" src="https://github.com/iamjithinjohn/PCA_Face_Recognition/blob/1DPCA/OUTPUT_SS/Wrong.png" /><br /><center><b>Unrecognised Face</b></center></td>
+          <td><img height="250" src="OUTPUT_SS/Correct.png" /><br /><center><b>Recognised Face</b></center></td>
+          <td><img height="250" src="OUTPUT_SS/Wrong.png" /><br /><center><b>Unrecognised Face</b></center></td>
      </tr>
   </table>
 
